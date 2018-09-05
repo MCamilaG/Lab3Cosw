@@ -8,7 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import './Login.css'
+import './Login.css';
 
 
 export class Login extends React.Component{
@@ -26,7 +26,13 @@ export class Login extends React.Component{
                         <form className="form">
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
+                                <Input 
+                                id="email" 
+                                name="email" 
+                                autoComplete="email" 
+                                autoFocus
+                                onChange = {this.props.handleUserChange} 
+                                />
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -35,6 +41,7 @@ export class Login extends React.Component{
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    onChange = {this.props.handlePasswordChange}
                                 />
                             </FormControl>
                             <Button
@@ -43,6 +50,7 @@ export class Login extends React.Component{
                                 variant="raised"
                                 color="primary"
                                 className="submit"
+                                onClick={this.props.handleLogin}
                             >
                                 Sign in
                             </Button>
@@ -51,6 +59,18 @@ export class Login extends React.Component{
                 </main>
             </React.Fragment>
         );
+    }
+
+    handleUserChange = event => {
+        this.setState({
+            user: event.target.value
+        });
+    }
+
+    handlePasswordChange = event => {
+        this.setState({
+            password: event.target.value
+        });
     }
 
 }
